@@ -40,6 +40,8 @@ export default {
       ruleForm2: {
         username: 'admin',
         password: '123456',
+        // username: '',
+        // password: '',
       },
       rules2: {
         username: [{required: true, message: 'please enter your account', trigger: 'blur'}],
@@ -50,6 +52,21 @@ export default {
   },
   methods: {
     handleSubmit(event){
+
+    //   this.$axios
+    //     .post('/login', {
+    //       username: this.loginForm.username,
+    //       password: this.loginForm.password
+    //     })
+    //     .then(successResponse => {
+    //       if (successResponse.data.code === 200) {
+    //         this.$router.replace({path: '/Home'})
+    //       }
+    //     })
+    //     .catch(failResponse => {
+    //     })
+    // }
+
       this.$refs.ruleForm2.validate((valid) => {
         if(valid){
           this.logining = true;

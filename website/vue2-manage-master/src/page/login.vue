@@ -8,11 +8,16 @@
             <div style="padding:20px">
                 <el-form ref="form" :model="login_form">
                     <el-form-item>
-                        <el-input v-model="login_form.user_name" prefix-icon="el-icon-user"></el-input>
+                        <el-input v-model="login_form.user_name" placeholder="用户名" prefix-icon="el-icon-user"></el-input>
                     </el-form-item>
                     <el-form-item>
-                        <el-input v-model="login_form.user_password" prefix-icon="el-icon-lock" show-password></el-input>
+                        <el-input v-model="login_form.user_password" placeholder="密码" prefix-icon="el-icon-lock" show-password></el-input>
                     </el-form-item>
+
+                    <slide-verify ref="slideblock" @success="onSuccess" @again="onAgain" @fulfilled="onFulfilled" @fail="onFail" @refresh="onRefresh" :slider-text="text" :imgs="imgs" :accuracy="accuracy"></slide-verify>
+                    <div>{{msg}}</div>
+
+
                     <el-form-item>
                         <el-checkbox v-model="remember_password">记住密码</el-checkbox>
                     </el-form-item>
@@ -28,12 +33,17 @@
         </div>
     </div>
 </template>
+
 <script>
 export default {
     data() {
         return {
             login_title: "天眼监控系统",
             login_adress: "你身边的好保安，你值得拥有",
+            msg: '',
+            text: '向右滑动->',
+            accuracy: 1, // 精确度小，可允许的误差范围小；为1时，则表示滑块要与凹槽完全重叠，才能验证成功。默认值为5
+
             login_form: {
                 user_name: '',
                 user_password: '',
@@ -43,6 +53,27 @@ export default {
         };
     },
     methods: {
+        onSuccess(times){
+            console.log('验证通过');
+            this.msg = `验证成功！ 耗时${(times / 1000).toFixed(1)}s`;
+        },
+        onFail(){
+            console.log('验证不通过');
+            this.msg = '验证不通过'
+        },
+        onRefresh(){
+            console.log('点击了刷新小图标');
+            this.msg = ''
+        },
+        onFulfilled() {
+            console.log('刷新成功啦！');
+        },
+        onAgain() {
+            console.log('检测到非人为操作的哦！');
+            this.msg = '请再次尝试';
+            // 刷新
+            this.handleClick();
+        },
         login () {
         /*    this.$axios
                 .post('/login', {

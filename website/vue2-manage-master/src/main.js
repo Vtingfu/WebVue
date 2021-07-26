@@ -5,8 +5,7 @@ import store from './store/'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import SlideVerify from 'vue-monoplasty-slide-verify';
-
-
+import VueParticles from 'vue-particles'
 import VueAliplayerV2 from "vue-aliplayer-v2";
 
 var axios = require('axios')
@@ -17,7 +16,7 @@ Vue.config.productionTip = false
 Vue.use(SlideVerify);
 Vue.use(VueAliplayerV2);
 Vue.use(ElementUI)
-
+Vue.use(VueParticles)
 
 
 

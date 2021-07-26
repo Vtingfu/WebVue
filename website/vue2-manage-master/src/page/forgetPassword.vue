@@ -1,5 +1,24 @@
 <template>
     <div id="login">
+        <vue-particles
+            class="login-bg"
+            color="#39AFFD"
+            :particleOpacity="0.7"
+            :particlesNumber="100"
+            shapeType="circle"
+            :particleSize="4"
+            linesColor="#8DD1FE"
+            :linesWidth="1"
+            :lineLinked="true"
+            :lineOpacity="0.4"
+            :linesDistance="150"
+            :moveSpeed="3"
+            :hoverEffect="true"
+            hoverMode="grab"
+            :clickEffect="true"
+            clickMode="push"
+        >
+        </vue-particles>
         <div id="form_space">
             <div align="center">
                 <h1>{{forget_title}}</h1>
@@ -111,13 +130,14 @@ export default {
 </script>
 <style scoped>
 h1 {
-    color: #606266;
+    color: #b47d6a;
 }
 p {
-    color: #606266;
+    color: #b47d6a;
 }
 #login {
     min-height: 100vh;
+    background: #13324b;
 }
 #form_space {
     border-radius: 10px;

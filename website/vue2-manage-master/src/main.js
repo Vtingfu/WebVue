@@ -9,7 +9,7 @@ import VueParticles from 'vue-particles'
 import VueAliplayerV2 from "vue-aliplayer-v2";
 
 var axios = require('axios')
-axios.defaults.baseURL = 'http://192.168.6.60:8083/api'
+axios.defaults.baseURL = 'http://192.168.43.140:8083/api'
 Vue.prototype.$axios = axios
 Vue.config.productionTip = false
 

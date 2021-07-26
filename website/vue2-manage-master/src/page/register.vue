@@ -1,5 +1,24 @@
 <template>
     <div id="login">
+        <vue-particles
+            class="login-bg"
+            color="#39AFFD"
+            :particleOpacity="0.7"
+            :particlesNumber="100"
+            shapeType="circle"
+            :particleSize="4"
+            linesColor="#8DD1FE"
+            :linesWidth="1"
+            :lineLinked="true"
+            :lineOpacity="0.4"
+            :linesDistance="150"
+            :moveSpeed="3"
+            :hoverEffect="true"
+            hoverMode="grab"
+            :clickEffect="true"
+            clickMode="push"
+        >
+        </vue-particles>
         <div id="form_space">
             <div align="center">
                 <h1>{{register_title}}</h1>
@@ -88,16 +107,44 @@ export default {
     },
     methods: {
         register() {
-            this.$message.success("注册成功");
+            this.$axios
+                .post('/register', {
+                    email:this.register_form.user_email
+                })
+
+                .then(successResponse => {
+                    if (successResponse.data.code === 200) {
+                        console.log("TestEmail");
+                        //this.$router.replace({path: '/manage'})
+                    }
+                })
+                .catch(failResponse => {
+                })
+           /* this.$message.success("注册成功");
             setTimeout(() => {
                 this.$router.push("/");
-            }, 1500);
+            }, 1500);*/
         },
         verify_code() {
-            this.$message.success("验证码发送成功请您查看邮箱");
-            this.verify_button_data.button_title = 60;
-            this.verify_button_data.button_state = true;
-            this.count_time_down();
+            //this.$message.success("验证码发送成功请您查看邮箱");
+            //this.verify_button_data.button_title = 60;
+            //this.verify_button_data.button_state = true;
+            //this.count_time_down();
+            this.$axios
+                .post('/register', {
+                    username: this.register_form.user_pet_name,
+                    e_mail:this.register_form.user_email,
+                    verification_code:this.register_form.user_email_code,
+                    password:this.register_form.user_password
+                })
+
+                .then(successResponse => {
+                    if (successResponse.data.code === 200) {
+                        this.$router.replace({path: '/manage'})
+                    }
+                })
+                .catch(failResponse => {
+                })
         },
         count_time_down() {
             if (this.verify_button_data.button_title != 0) {
@@ -107,7 +154,7 @@ export default {
                     this.count_time_down();
                 }, 1000);
             } else {
-                this.verify_button_data.button_title = "再次获取验";
+                this.verify_button_data.button_title = "再次获取";
                 this.verify_button_data.button_state = false;
             }
         },
@@ -119,13 +166,14 @@ export default {
 </script>
 <style scoped>
 h1 {
-    color: #606266;
+    color: #b47d6a;
 }
 p {
-    color: #606266;
+    color: #b47d6a;
 }
 #login {
     min-height: 100vh;
+    background: #13324b;
 }
 #form_space {
     border-radius: 10px;

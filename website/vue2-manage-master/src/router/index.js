@@ -30,7 +30,6 @@ const routes = [
         path: '/register',
         name: 'register',
         component: resolve => require(['@/page/register.vue'], resolve),
-        // component: () => import('@/views/login/Register.vue'),
         meta: {
             title: '注册',
             vist_label: ['super_admin', 'admin', 'user']
@@ -56,8 +55,12 @@ const routes = [
 			meta: [],
 		},{
 			path: '/addShop',
+
 			component: addShop,
 			meta: ['添加数据', '添加商铺'],
+
+
+
 		},{
 			path: '/addGoods',
 			component: addGoods,
@@ -91,28 +94,31 @@ const routes = [
 			component: newMember,
 			meta: ['图表', '用户数据'],
 		},{
-			path: '/uploadImg',
-			component: uploadImg,
-			meta: ['文本编辑', 'MarkDown'],
-		},{
-			path: '/vueEdit',
-			component: vueEdit,
-			meta: ['编辑', '文本编辑'],
-		},{
-			path: '/adminSet',
-			component: adminSet,
-			meta: ['设置', '管理员设置'],
-		},{
-			path: '/sendMessage',
-			component: sendMessage,
-			meta: ['设置', '发送通知'],
-		},{
+            path: '/uploadImg',
+            component: uploadImg,
+            meta: ['文本编辑', 'MarkDown'],
+        },{
+            path: '/vueEdit',
+            component: vueEdit,
+            meta: ['编辑', '文本编辑'],
+        },{
+            path: '/adminSet',
+            component: adminSet,
+            meta: ['设置', '管理员设置'],
+        },{
+            path: '/sendMessage',
+            component: sendMessage,
+            meta: ['设置', '发送通知'],
+        },{
 			path: '/explain',
 			component: explain,
 			meta: ['说明', '说明'],
 		}]
 	}
 ]
+
+
+
 
 export default new Router({
 	routes,

@@ -2,6 +2,7 @@
     <div>
         <head-top></head-top>
 		<section class="data_section">
+
 			<header class="section_title">数据统计</header>
             <!-- 将网页划分成若干行，然后每行等分为若干列-->
             <!-- 每行使用<el-row>标签标识，然后每行内的列使用<el-col>标识-->
@@ -21,8 +22,10 @@
                 <el-col :span="4"><div class="data_list"><span class="data_num">{{allOrderCount}}</span> 入侵事件</div></el-col>
                 <el-col :span="4"><div class="data_list"><span class="data_num">{{allAdminCount}}</span> 总入侵人员</div></el-col>
             </el-row>
+
 		</section>
-		<tendency :sevenDate='sevenDate' :sevenDay='sevenDay'></tendency>
+		<tendency :sevenDate='sevenDate' :sevenDay='sevenDay'>
+        </tendency>
     </div>
 </template>
 

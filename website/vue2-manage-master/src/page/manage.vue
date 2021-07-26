@@ -1,21 +1,21 @@
 <template>
 	<div class="manage_page fillcontain">
 		<el-row style="height: 100%;">
-	  		<el-col :span="4"  style="min-height: 100%; background-color: #324057;">
+	  		<el-col :span="4"  style="min-height: 100%; background-color: #7f9bd9;">
 				<el-menu :default-active="defaultActive" style="min-height: 100%;" theme="dark" router>
 					<el-menu-item index="manage"><i class="el-icon-menu"></i>首页</el-menu-item>
 					<el-submenu index="2">
 						<template slot="title"><i class="el-icon-document"></i>历史入侵</template>
 						<el-menu-item index="userList">用户列表</el-menu-item>
-						<el-menu-item index="shopList">商家列表</el-menu-item>
-						<el-menu-item index="foodList">食品列表</el-menu-item>
-						<el-menu-item index="orderList">订单列表</el-menu-item>
+<!--						<el-menu-item index="shopList">商家列表</el-menu-item>-->
+<!--						<el-menu-item index="foodList">食品列表</el-menu-item>-->
+<!--						<el-menu-item index="orderList">订单列表</el-menu-item>-->
 						<el-menu-item index="adminList">管理员列表</el-menu-item>
 					</el-submenu>
 					<el-submenu index="3">
 						<template slot="title"><i class="el-icon-plus"></i>添加设备</template>
-						<el-menu-item index="addShop">添加商铺</el-menu-item>
-						<el-menu-item index="addGoods">添加商品</el-menu-item>
+						<el-menu-item index="addShop">添加摄像头</el-menu-item>
+<!--						<el-menu-item index="addGoods">添加商品</el-menu-item>-->
 					</el-submenu>
 					<el-submenu index="4">
 						<template slot="title"><i class="el-icon-video-camera-solid"></i>实时监控</template>
@@ -59,8 +59,17 @@
 
 
 <style lang="less" scoped>
+
 	@import '../style/mixin';
 	.manage_page{
 
 	}
+
+    .el-menu-item.is-active {
+        background-color: #7f9bd9 !important;
+        color: #fff;
+        span {
+            color: #329c90 !important;
+        }
+    }
 </style>

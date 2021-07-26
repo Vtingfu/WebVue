@@ -4,7 +4,7 @@
         <el-row style="margin-top: 20px;">
   			<el-col :span="12" :offset="4">
 		        <el-form :model="formData" :rules="rules" ref="formData" label-width="110px" class="demo-formData">
-					<el-form-item label="店铺名称" prop="name">
+					<el-form-item label="摄像头名称" prop="name">
 						<el-input v-model="formData.name"></el-input>
 					</el-form-item>
 					<el-form-item label="详细地址" prop="address">
@@ -20,42 +20,33 @@
 					<el-form-item label="联系电话" prop="phone">
 						<el-input v-model.number="formData.phone" maxLength="11"></el-input>
 					</el-form-item>
-					<el-form-item label="店铺简介" prop="description">
+					<el-form-item label="摄像头用处" prop="description">
 						<el-input v-model="formData.description"></el-input>
 					</el-form-item>
-					<el-form-item label="店铺标语" prop="promotion_info">
-						<el-input v-model="formData.promotion_info"></el-input>
-					</el-form-item>
-					<el-form-item label="店铺分类">
-						<el-cascader
-						  :options="categoryOptions"
-						  v-model="selectedCategory"
-						  change-on-select
-						></el-cascader>
-					</el-form-item>
-					<el-form-item label="店铺特点" style="white-space: nowrap;">
-						<span>品牌保证</span>
+<!--					<el-form-item label="场景分类">-->
+<!--						<el-cascader-->
+<!--						  :options="categoryOptions"-->
+<!--						  v-model="selectedCategory"-->
+<!--						  change-on-select-->
+<!--						></el-cascader>-->
+<!--					</el-form-item>-->
+					<el-form-item label="使用场景" style="white-space: nowrap;">
+						<span>仓库</span>
 						<el-switch on-text="" off-text="" v-model="formData.is_premium"></el-switch>
-						<span>蜂鸟专送</span>
+						<span>教室</span>
 						<el-switch on-text="" off-text="" v-model="formData.delivery_mode"></el-switch>
-						<span>新开店铺</span>
+						<span>店铺</span>
 						<el-switch on-text="" off-text="" v-model="formData.new"></el-switch>
 					</el-form-item>
 					<el-form-item style="white-space: nowrap;">
-						<span>外卖保</span>
+						<span>街角</span>
 						<el-switch on-text="" off-text="" v-model="formData.bao"></el-switch>
-						<span>准时达</span>
+						<span>家庭</span>
 						<el-switch on-text="" off-text="" v-model="formData.zhun"></el-switch>
-						<span>开发票</span>
+						<span>商场</span>
 						<el-switch on-text="" off-text="" v-model="formData.piao"></el-switch>
 					</el-form-item>
-					<el-form-item label="配送费" prop="float_delivery_fee">
-						<el-input-number v-model="formData.float_delivery_fee" :min="0" :max="20"></el-input-number>
-					</el-form-item>
-					<el-form-item label="起送价" prop="float_minimum_order_amount">
-						<el-input-number v-model="formData.float_minimum_order_amount" :min="0" :max="100"></el-input-number>
-					</el-form-item>
-					<el-form-item label="营业时间" style="white-space: nowrap;">
+					<el-form-item label="摄像头使用时间" style="white-space: nowrap;">
 						<el-time-select
 							placeholder="起始时间"
 							v-model="formData.startTime"
@@ -77,7 +68,7 @@
 						</el-time-select>
 					</el-form-item>
 
-					<el-form-item label="上传店铺头像">
+					<el-form-item label="上传人脸">
 						<el-upload
 						  class="avatar-uploader"
 						  :action="baseUrl + '/v1/addimg/shop'"
@@ -88,7 +79,7 @@
 						  <i v-else class="el-icon-plus avatar-uploader-icon"></i>
 						</el-upload>
 					</el-form-item>
-					<el-form-item label="上传营业执照">
+					<el-form-item label="上传使用许可">
 						<el-upload
 						  class="avatar-uploader"
 						  :action="baseUrl + '/v1/addimg/shop'"
@@ -99,7 +90,7 @@
 						  <i v-else class="el-icon-plus avatar-uploader-icon"></i>
 						</el-upload>
 					</el-form-item>
-					<el-form-item label="上传餐饮服务许可证">
+					<el-form-item label="上传店铺证明">
 						<el-upload
 						  class="avatar-uploader"
 						  :action="baseUrl + '/v1/addimg/shop'"
@@ -110,49 +101,49 @@
 						  <i v-else class="el-icon-plus avatar-uploader-icon"></i>
 						</el-upload>
 					</el-form-item>
-					<el-form-item label="优惠活动">
-						<el-select v-model="activityValue" @change="selectActivity" :placeholder="activityValue">
-						    <el-option
-						      	v-for="item in options"
-						      	:key="item.value"
-						      	:label="item.label"
-						      	:value="item.value">
-						    </el-option>
-						</el-select>
-					</el-form-item>
-					<el-table
-					    :data="activities"
-					    style="min-width: 600px;margin-bottom: 20px;"
-						align="cneter"
-					    :row-class-name="tableRowClassName">
-					    <el-table-column
-					      prop="icon_name"
-					      label="活动标题"
-					      align="cneter"
-					      width="120">
-					    </el-table-column>
-					    <el-table-column
-					      prop="name"
-					      label="活动名称"
-					      align="cneter"
-					      width="120">
-					    </el-table-column>
-					    <el-table-column
-					      prop="description"
-					      align="cneter"
-					      label="活动详情">
-					    </el-table-column>
-					    <el-table-column
-					    	label="操作"
-					    	width="120">
-					    <template slot-scope="scope">
-					        <el-button
-					          size="small"
-					          type="danger"
-					          @click="handleDelete(scope.$index)">删除</el-button>
-					    </template>
-					    </el-table-column>
-					</el-table>
+<!--					<el-form-item label="优惠活动">-->
+<!--						<el-select v-model="activityValue" @change="selectActivity" :placeholder="activityValue">-->
+<!--						    <el-option-->
+<!--						      	v-for="item in options"-->
+<!--						      	:key="item.value"-->
+<!--						      	:label="item.label"-->
+<!--						      	:value="item.value">-->
+<!--						    </el-option>-->
+<!--						</el-select>-->
+<!--					</el-form-item>-->
+<!--					<el-table-->
+<!--					    :data="activities"-->
+<!--					    style="min-width: 600px;margin-bottom: 20px;"-->
+<!--						align="cneter"-->
+<!--					    :row-class-name="tableRowClassName">-->
+<!--					    <el-table-column-->
+<!--					      prop="icon_name"-->
+<!--					      label="活动标题"-->
+<!--					      align="cneter"-->
+<!--					      width="120">-->
+<!--					    </el-table-column>-->
+<!--					    <el-table-column-->
+<!--					      prop="name"-->
+<!--					      label="活动名称"-->
+<!--					      align="cneter"-->
+<!--					      width="120">-->
+<!--					    </el-table-column>-->
+<!--					    <el-table-column-->
+<!--					      prop="description"-->
+<!--					      align="cneter"-->
+<!--					      label="活动详情">-->
+<!--					    </el-table-column>-->
+<!--					    <el-table-column-->
+<!--					    	label="操作"-->
+<!--					    	width="120">-->
+<!--					    <template slot-scope="scope">-->
+<!--					        <el-button-->
+<!--					          size="small"-->
+<!--					          type="danger"-->
+<!--					          @click="handleDelete(scope.$index)">删除</el-button>-->
+<!--					    </template>-->
+<!--					    </el-table-column>-->
+<!--					</el-table>-->
 					<el-form-item class="button_submit">
 						<el-button type="primary" @click="submitForm('formData')">立即创建</el-button>
 					</el-form-item>

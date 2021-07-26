@@ -93,6 +93,7 @@
         "sinon-chai": "^2.8.0",
         "style-loader": "^3.2.1",
         "stylus-loader": "^6.1.0",
+        "svg-sprite-loader": "^6.0.9",
         "url-loader": "^0.5.8",
         "vue-aliplayer": "^1.0.0",
         "vue-loader": "^11.3.4",

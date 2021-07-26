@@ -1,7 +1,5 @@
 <template>
-
-    <div id="login">
-
+    <div id="login" >
         <vue-particles
             class="login-bg"
             color="#39AFFD"
@@ -21,6 +19,7 @@
             clickMode="push"
         >
         </vue-particles>
+
         <div id="form_space">
             <div align="center">
                 <h1>{{login_title}}</h1>
@@ -35,14 +34,17 @@
                     <el-form-item>
                         <el-input v-model="login_form.user_password" placeholder="密码" prefix-icon="el-icon-lock" show-password></el-input>
                     </el-form-item>
+
+                    <el-form-item >
+                        <el-button class = "button"type="primary" icon="el-icon-right" @click="login() ">登录</el-button>
+                    </el-form-item>
                     <el-form-item>
                         <el-checkbox v-model="remember_password">记住密码</el-checkbox>
                     </el-form-item>
-                    <el-form-item >
-                        <el-button class = "button"type="primary" icon="el-icon-right" @click="login()">登录</el-button>
-                    </el-form-item>
                     <el-form-item>
                         <el-link type="danger" style="float:left" @click="to('/register')">注册</el-link>
+<!--                        <el-link type="danger" style="float:left" @click="to('/register')">""</el-link>-->
+<!--                        <el-link type="danger" style="float:left" @click="to('/register')">注册</el-link>-->
                         <el-link type="primary" style="float:right" @click="to('/forget/password')">找回密码？</el-link>
                     </el-form-item>
                     <!--滑块验证-->
@@ -68,7 +70,7 @@ export default {
                 user_password: '',
             },
             responseResult: [],
-            remember_password: false,
+            remember_password: true,
         };
     },
     methods: {
@@ -94,19 +96,26 @@ export default {
             this.handleClick();
         },
         login () {
-        /*    this.$axios
-                .post('/login', {
-                    username: this.login_form.user_name,
-                    password: this.login_form.user_password
-                })
-
-                .then(successResponse => {
-                    if (successResponse.data.code === 200) {
-                        this.$router.replace({path: '/manage'})
-                    }
-                })
-                .catch(failResponse => {
-                })*/
+            // this.$axios
+            //     .post('/login', {
+            //         username: this.login_form.user_name,
+            //         password: this.login_form.user_password,
+            //         // e_mail:'0',
+            //         // face_path:'0',
+            //         // id:0,
+            //         // phone_num:'0',
+            //         // right:0,
+            //         // state:0,
+            //         // wechat_num:'0'
+            //     })
+            //
+            //     .then(successResponse => {
+            //         if (successResponse.data.code === 200) {
+            //             this.$router.replace({path: '/manage'})
+            //         }
+            //     })
+            //     .catch(failResponse => {
+            //     })
             this.$router.replace({path: '/manage'})
 
         },
@@ -123,12 +132,13 @@ export default {
 </script>
 <style scoped>
 h1 {
-    color: #606266;
+    color: #b47d6a;
 }
 p {
-    color: #606266;
+    color: #b47d6a;
 }
 #login {
+
     min-height: 100vh;
     background: #13324b;
 }

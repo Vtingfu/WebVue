@@ -13,9 +13,9 @@
 						<el-menu-item index="adminList">管理员列表</el-menu-item>
 					</el-submenu>
 					<el-submenu index="3">
-						<template slot="title"><i class="el-icon-plus"></i>添加设备</template>
-						<el-menu-item index="addShop">添加摄像头</el-menu-item>
-<!--						<el-menu-item index="addGoods">添加商品</el-menu-item>-->
+						<template slot="title"><i class="el-icon-plus"></i>添加相关信息</template>
+						<el-menu-item index="addCamera">添加摄像头</el-menu-item>
+						<el-menu-item index="addInfo">添加个人信息</el-menu-item>
 					</el-submenu>
 					<el-submenu index="4">
 						<template slot="title"><i class="el-icon-video-camera-solid"></i>实时监控</template>

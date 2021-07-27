@@ -6,8 +6,8 @@ Vue.use(Router)
 const login = r => require.ensure([], () => r(require('@/page/login')), 'login');
 const manage = r => require.ensure([], () => r(require('@/page/manage')), 'manage');
 const home = r => require.ensure([], () => r(require('@/page/home')), 'home');
-const addShop = r => require.ensure([], () => r(require('@/page/addShop')), 'addShop');
-const addGoods = r => require.ensure([], () => r(require('@/page/addGoods')), 'addGoods');
+const addCamera = r => require.ensure([], () => r(require('@/page/addCamera')), 'addCamera');
+const addInfo = r => require.ensure([], () => r(require('@/page/addInfo')), 'addInfo');
 const userList = r => require.ensure([], () => r(require('@/page/userList')), 'userList');
 const shopList = r => require.ensure([], () => r(require('@/page/shopList')), 'shopList');
 const foodList = r => require.ensure([], () => r(require('@/page/foodList')), 'foodList');
@@ -54,16 +54,16 @@ const routes = [
 			component: home,
 			meta: [],
 		},{
-			path: '/addShop',
+			path: '/addCamera',
 
-			component: addShop,
+			component: addCamera,
 			meta: ['添加数据', '添加商铺'],
 
 
 
 		},{
-			path: '/addGoods',
-			component: addGoods,
+			path: '/addInfo',
+			component: addInfo,
 			meta: ['添加数据', '添加商品'],
 		},{
 			path: '/userList',

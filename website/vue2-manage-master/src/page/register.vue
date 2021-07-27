@@ -109,7 +109,10 @@ export default {
         register() {
             this.$axios
                 .post('/register', {
-                    email:this.register_form.user_email
+                    username: this.register_form.user_pet_name,
+                    e_mail:this.register_form.user_email,
+                    verification_code:this.register_form.user_email_code,
+                    password:this.register_form.user_password
                 })
 
                 .then(successResponse => {
@@ -126,6 +129,7 @@ export default {
             }, 1500);*/
         },
         verify_code() {
+
             //this.$message.success("验证码发送成功请您查看邮箱");
             //this.verify_button_data.button_title = 60;
             //this.verify_button_data.button_state = true;
@@ -139,6 +143,8 @@ export default {
                 })
 
                 .then(successResponse => {
+
+
                     if (successResponse.data.code === 200) {
                         this.$router.replace({path: '/manage'})
                     }

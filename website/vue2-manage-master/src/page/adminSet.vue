@@ -27,7 +27,7 @@
                       <img v-if="adminInfo.avatar" :src="baseImgPath + adminInfo.avatar" class="avatar">
                       <i v-else class="el-icon-plus avatar-uploader-icon"></i>
                     </el-upload>
-                </li>    
+                </li>
             </ul>
         </div>
     </div>

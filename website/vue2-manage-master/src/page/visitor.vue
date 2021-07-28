@@ -1,64 +1,43 @@
 <template>
-    <div class="video">
-        <video
-            id="vPull"
-            controls
-            autoplay
-            muted
-            width="100%"
-            height="100%">
-        </video>
+    <div class="video1">
+        <head-top></head-top>
+        <img id =“img1” src="http://192.168.2.77:5000/video_feed">
+        <img id =“img2” src="../assets/img/guard.gif">
+        <img id =“img3” src="../assets/img/guard.gif">
+        <img id =“img4” src="../assets/img/guard.gif">
+
     </div>
+
 </template>
 
 <script>
-import flv from "flv.js";
+import headTop from '../components/headTop'
 
 export default {
     name: "",
     data() {
         return {
-            player: null,
         };
     },
+    components: {
+        headTop
+    },
     methods: {
-        play(urls) {
-            let video = document.getElementById("vPull"); //定义播放路径
-            if (flv.isSupported()) {
-                this.player = flv.createPlayer(
-                    {
-                        type: "flv",
-                        isLive: true,
-                        url: urls,
-                    },
-                    {
-                        enableWorker: false, //不启用分离线程
-                        enableStashBuffer: false, //关闭IO隐藏缓冲区
-                        isLive: true,
-                        lazyLoad: false,
-                    }
-                );
-
-            } else {
-                console.log("不支持的格式");
-                return;
-            }
-            this.player.attachMediaElement(video);
-            this.player.load();
-            this.player.play();
-        },
-        destruction() {
-            //销毁对象
-            if (this.player) {
-                this.player.pause();
-                this.player.destroy();
-                this.player = null;
-            }
-        },
 
     },
     mounted() {
-        this.play('http://1011.hlsplay.aodianyun.com/demo/game.flv');
     }
 };
 </script>
+<style>
+img{
+    height: 370px;
+    width: 600px;
+}
+.video1{
+    height: 100%;
+    min-width: 100%;
+    background: #2b2b2b;
+    margin: auto;
+}
+</style>

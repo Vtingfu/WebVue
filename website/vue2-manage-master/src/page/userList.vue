@@ -22,7 +22,7 @@
                 </el-table-column>
                 <el-table-column
                   property="city"
-                  label="注册地址">
+                  label="详细信息">
                 </el-table-column>
             </el-table>
             <div class="Pagination" style="text-align: left;margin-top: 10px;">
@@ -46,8 +46,8 @@
         data(){
             return {
                 tableData: [{
-                  registe_time: '2016-05-02',
-                  username: '王小虎',
+                  registe_time: '2021-09-02',
+                  username: '小明',
                   city: '上海市普陀区金沙江路 1518 弄'
                 }, {
                   registe_time: '2016-05-04',

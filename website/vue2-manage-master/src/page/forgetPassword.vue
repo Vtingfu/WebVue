@@ -2,7 +2,7 @@
     <div id="login">
         <vue-particles
             class="login-bg"
-            color="#39AFFD"
+            color="#fcfcfc"
             :particleOpacity="0.7"
             :particlesNumber="100"
             shapeType="circle"
@@ -20,6 +20,9 @@
         >
         </vue-particles>
         <div id="form_space">
+            <div class="iconPic" align="center">
+                <img :src="imgSrc" width="30%" height="30%" alt="" />
+            </div>
             <div align="center">
                 <h1>{{forget_title}}</h1>
                 <p>{{forget_adress}}</p>
@@ -82,6 +85,7 @@
 export default {
     data() {
         return {
+            imgSrc:require('../assets/img/guard.gif'),
             forget_title: "天眼监控系统",
             forget_adress: "你身边的好保安，你值得拥有",
             verify_button_data: {
@@ -130,14 +134,14 @@ export default {
 </script>
 <style scoped>
 h1 {
-    color: #b47d6a;
+    color: #ffffff;
 }
 p {
-    color: #b47d6a;
+    color: #ffffff;
 }
 #login {
     min-height: 100vh;
-    background: #13324b;
+    background-color: #000;
 }
 #form_space {
     border-radius: 10px;

@@ -76,7 +76,7 @@ const routes = [
 		},{
 			path: '/foodList',
 			component: foodList,
-			meta: ['历史入侵', '食品列表'],
+			meta: ['历史入侵', '入侵信息'],
 		},{
 			path: '/orderList',
 			component: orderList,
@@ -117,10 +117,23 @@ const routes = [
 	}
 ]
 
-
+// routes.beforeEach((to,from,next)=>{
+//     if(to.path === '/login'){
+//         next()
+//     }else{
+//         //const state=sessionStorage.getItem('state')
+//         // if(1){
+//             next('/login')
+//         // }else{
+//         //     next()
+//         // }
+//     }
+// })
 
 
 export default new Router({
 	routes,
 	strict: process.env.NODE_ENV !== 'production',
 })
+
+

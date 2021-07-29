@@ -1,6 +1,13 @@
 <template>
     <div>
         <head-top></head-top>
+
+<!--        添加图片框选-->
+        <div class="content">
+            <img src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=2550960699,1868736188&fm=26&gp=0.jpg" />
+            <canvas ref="markCanvas"></canvas>
+        </div>
+
         <el-row style="margin-top: 20px;">
   			<el-col :span="12" :offset="4">
 		        <el-form :model="formData" :rules="rules" ref="formData" label-width="110px" class="demo-formData">
@@ -79,7 +86,7 @@
 						  <i v-else class="el-icon-plus avatar-uploader-icon"></i>
 						</el-upload>
 					</el-form-item>
-					<el-form-item label="上传使用许可">
+					<el-form-item label="上传警戒区域">
 						<el-upload
 						  class="avatar-uploader"
 						  :action="baseUrl + '/v1/addimg/shop'"
@@ -146,7 +153,9 @@
 <!--					</el-table>-->
 					<el-form-item class="button_submit">
 						<el-button type="primary" @click="submitForm('formData')">立即创建</el-button>
-					</el-form-item>
+                        <el-button class = "button"type="primary" icon="el-icon-right" @click="sendmsg()">登录</el-button>
+
+                    </el-form-item>
 				</el-form>
   			</el-col>
   		</el-row>
@@ -157,9 +166,12 @@
     import headTop from '@/components/headTop'
     import {cityGuess, addShop, searchplace, foodCategory} from '@/api/getData'
     import {baseUrl, baseImgPath} from '@/config/env'
+    import {draw} from "@/api/draw";
     export default {
+        name: 'marks',
     	data(){
     		return {
+                markList: [], // 标记内容数组
     			city: {},
     			formData: {
 					name: '', //店铺名称
@@ -225,6 +237,7 @@
     		headTop,
     	},
     	mounted(){
+            this.initCanvas(); // 画布初始化
     		this.initData();
     	},
     	methods: {
@@ -431,12 +444,66 @@
 						});
 						return false;
 					}
-				});
+
+				})
 			},
+            initCanvas() {
+                let that = this
+                this.$nextTick(() => {
+                    // 初始化canvas宽高
+                    let cav = this.$refs.markCanvas;
+                    cav.width = '800';
+                    cav.height = '600';
+                    let ctx = cav.getContext('2d');
+                    ctx.strokeStyle = 'blue'
+                    cav.style.cursor = 'crosshair'
+                    // 计算使用变量
+                    let list = this.markList; // 画框数据集合, 用于服务端返回的数据显示和绘制的矩形保存
+                    // 若服务端保存的为百分比则此处需计算实际座标, 直接使用实际座标可省略
+                    list.forEach(function (value, index, array) {
+                        let newValue = {
+                            x: value.x * cav.width,
+                            y: value.y * cav.height,
+                            w: value.w * cav.width,
+                            h: value.h * cav.height,
+                        }
+                        list.splice(index, 1, newValue)
+                    })
+                    // 若list长度不为0, 则显示已标记框
+                    if (list.length !== 0) {
+                        list.forEach(function (value, index, array) {
+                            // 遍历绘制所有标记框
+                            ctx.rect(value.x, value.y, value.w, value.h);
+
+                            ctx.stroke();
+                        });
+                    }
+                    draw(cav,list);
+                })
+            },
+            sendmsg(){
+    		    const loc = this.markList[0]
+                console.log(loc)
+                this.$axios
+                    .post("http://192.168.165.77:5000/loc", {
+                        x1: loc.x,
+                        y1: loc.y,
+                        x2: loc.x + loc.w,
+                        y2: loc.y + loc.h,
+
+                    })
+
+                    .then(successResponse => {
+                        if (successResponse.data.code === 200) {
+                            this.$message.success("登陆成功");
+                        }
+                    })
+                    .catch(failResponse => {
+                    })
+            }
 		}
     }
 </script>
-
 <style lang="less">
 	@import '../style/mixin';
 	.button_submit{
@@ -468,8 +535,30 @@
 	.el-table .info-row {
 	    background: #c9e5f5;
 	}
+    .content {
+        position: relative;
+        top: 50%;
+        left: 50%;
+        transform: translateX(-50%) translateX(-50%);
+        width: 800px;
+        height: 600px;
 
-	.el-table .positive-row {
-	    background: #e2f0e4;
-	}
+        img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .el-table .positive-row {
+            background: #e2f0e4;
+        }
+    }
 </style>

@@ -143,6 +143,9 @@ p {
     min-height: 100vh;
     background-color: #000;
 }
+.login-bg{
+    background: url("../assets/img/123.jpg");
+}
 #form_space {
     border-radius: 10px;
     position: absolute;

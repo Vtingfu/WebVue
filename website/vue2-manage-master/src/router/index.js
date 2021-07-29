@@ -9,14 +9,12 @@ const home = r => require.ensure([], () => r(require('@/page/home')), 'home');
 const addCamera = r => require.ensure([], () => r(require('@/page/addCamera')), 'addCamera');
 const addInfo = r => require.ensure([], () => r(require('@/page/addInfo')), 'addInfo');
 const userList = r => require.ensure([], () => r(require('@/page/userList')), 'userList');
-const shopList = r => require.ensure([], () => r(require('@/page/shopList')), 'shopList');
-const foodList = r => require.ensure([], () => r(require('@/page/foodList')), 'foodList');
+const intrusionInfo = r => require.ensure([], () => r(require('@/page/intrusionInfo')), 'intrusionInfo');
 const orderList = r => require.ensure([], () => r(require('@/page/orderList')), 'orderList');
 const adminList = r => require.ensure([], () => r(require('@/page/adminList')), 'adminList');
 const visitor = r => require.ensure([], () => r(require('@/page/visitor')), 'visitor');
 const newMember = r => require.ensure([], () => r(require('@/page/newMember')), 'newMember');
 const uploadImg = r => require.ensure([], () => r(require('@/page/uploadImg')), 'uploadImg');
-const vueEdit = r => require.ensure([], () => r(require('@/page/vueEdit')), 'vueEdit');
 const adminSet = r => require.ensure([], () => r(require('@/page/adminSet')), 'adminSet');
 const sendMessage = r => require.ensure([], () => r(require('@/page/sendMessage')), 'sendMessage');
 const explain = r => require.ensure([], () => r(require('@/page/explain')), 'explain');
@@ -55,12 +53,8 @@ const routes = [
 			meta: [],
 		},{
 			path: '/addCamera',
-
 			component: addCamera,
 			meta: ['添加数据', '添加商铺'],
-
-
-
 		},{
 			path: '/addInfo',
 			component: addInfo,
@@ -70,12 +64,8 @@ const routes = [
 			component: userList,
 			meta: ['历史入侵', '用户列表'],
 		},{
-			path: '/shopList',
-			component: shopList,
-			meta: ['历史入侵', '商家列表'],
-		},{
-			path: '/foodList',
-			component: foodList,
+			path: '/intrusionInfo',
+			component: intrusionInfo,
 			meta: ['历史入侵', '入侵信息'],
 		},{
 			path: '/orderList',
@@ -97,10 +87,6 @@ const routes = [
             path: '/uploadImg',
             component: uploadImg,
             meta: ['文本编辑', 'MarkDown'],
-        },{
-            path: '/vueEdit',
-            component: vueEdit,
-            meta: ['编辑', '文本编辑'],
         },{
             path: '/adminSet',
             component: adminSet,

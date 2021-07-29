@@ -20,11 +20,11 @@
                     v-model="slotData.data.row.status"
                 </el-tooltip>
             </template>
-            <template v-slot:operation="slotData">
-                <el-button type="success" size="mini" @click="onSuccess">分配角色</el-button>
-                <el-button type="primary" size="mini">编辑{{slotData.data.row.level}}</el-button>
-                <el-button type="danger" size="mini">删除</el-button>
-            </template>
+<!--            <template v-slot:operation="slotData">-->
+<!--                <el-button type="success" size="mini" @click="onSuccess">分配角色</el-button>-->
+<!--                <el-button type="primary" size="mini">编辑{{slotData.data.row.level}}</el-button>-->
+<!--                <el-button type="danger" size="mini">删除</el-button>-->
+<!--            </template>-->
             <template v-slot:sex="slotData">
                 <span>{{slotData.data.row.gender | sexFilter}}</span>
             </template>
@@ -83,12 +83,12 @@ export default {
                     label: "车辆",
                     field: "is_car"
                 },
-                {
-                    label: "操作",
-                    columnType: "slot",
-                    slotName: "operation",
-                    width: 260
-                }
+                // {
+                //     label: "操作",
+                //     columnType: "slot",
+                //     slotName: "operation",
+                //     width: 260
+                // }
             ],
             //数据
             tableLoadData: [

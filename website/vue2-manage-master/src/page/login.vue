@@ -102,7 +102,13 @@ export default {
 
                 .then(successResponse => {
                     if (successResponse.data.code === 200) {
+                        this.$message.success("登陆成功");
                         this.$router.replace({path: '/manage'})
+                    }
+                    else{
+                        this.$message.error("用户密码错误，请重新输入！");
+                        setTimeout(()=>{this.$router.go(0)},500);
+
                     }
                 })
                 .catch(failResponse => {
@@ -115,7 +121,7 @@ export default {
         },
         onFail(){
             console.log('验证不通过');
-            this.msg = '验证不通过'
+            this.$message.error("验证不通过");
         },
         onRefresh(){
             console.log('点击了刷新小图标');
@@ -125,8 +131,7 @@ export default {
             console.log('刷新成功啦！');
         },
         onAgain() {
-            console.log('检测到非人为操作的哦！');
-            this.msg = '请再次尝试';
+            this.$message.error("检测到非人为操作的哦！");
             // 刷新
             this.handleClick();
         },
